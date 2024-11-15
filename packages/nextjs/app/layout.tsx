@@ -8,13 +8,10 @@ const ScaffoldEthApp = ({ children }: { children: React.ReactNode }) => {
     <html suppressHydrationWarning>
       <body>
         <Providers>
-          <div className="flex flex-col h-screen">
-            <div className="flex flex-1">
-              <SidebarComponent />
-              <main className="flex-1 p-6 bg-gradient-to-l from-gray-900 to-black">{children}</main>
-            </div>
-            <Footer />
+          <div className="flex h-screen">
+            <div className="flex-1 bg-gradient-to-l from-gray-900 to-black">{children}</div>
           </div>
+          <Footer />
         </Providers>
       </body>
     </html>
