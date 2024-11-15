@@ -1,6 +1,6 @@
 {
-  "name": "@layerzerolabs/oft-example",
-  "version": "0.5.0",
+  "name": "aroha-oft",
+  "version": "0.0.1",
   "private": true,
   "license": "MIT",
   "scripts": {

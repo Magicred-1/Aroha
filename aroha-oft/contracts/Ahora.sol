@@ -21,16 +21,15 @@ contract Ahora is Ownable {
         merkleRoot = _merkleRoot;
     }
 
-    function mint(address _to, uint256 _amount, bytes32[] calldata _proof) external returns (bool) {
-        MyOFT(tokensAddresses[0]).mint(_to, _amount);
-    }
+    // function mint(address _to, uint256 _amount, bytes32[] calldata _proof) external returns (bool) onlyOwner {
+        
+    // }
 
     function whitelistAddress(bytes32 _root, bytes32 _leaf) public pure {
         MerkleProof.verify(_root, _leaf, 0);
     }
 
-    function isWhitelisted(address _account, bytes32[] calldata _proof) internal view returns(bool) {
-        bytes32 leaf = keccak256(abi.encodePacked(_account));
-        return MerkleProof.verify(merkleRoot, leaf, _proof);
+    function isWhitelistedAddress(address _address) public view returns (bool) {
+        return isWhitelisted[_address];
     }
 }
