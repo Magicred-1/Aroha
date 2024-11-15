@@ -13,9 +13,9 @@ export default function MainProvider({
   return (
     <Web3AuthProvider config={web3AuthContextConfig}>
       <Toaster />
-        <XRPLChainProvider>
+        {/* <XRPLChainProvider> */}
           {children}
-        </XRPLChainProvider>
+        {/* </XRPLChainProvider> */}
     </Web3AuthProvider>
   );
 }
