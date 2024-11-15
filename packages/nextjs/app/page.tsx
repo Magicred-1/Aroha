@@ -1,10 +1,10 @@
 "use client";
 
-import { LoginSignupSocial } from "@/components/login-signup-social";
 import type { NextPage } from "next";
+import { Login } from "@/components/Login";
 
 const Home: NextPage = () => {
-  return <LoginSignupSocial />;
+  return <Login />;
 };
 
 export default Home;
