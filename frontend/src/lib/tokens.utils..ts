@@ -1,4 +1,15 @@
-import { hederaTestnet, lineaSepolia, rootstockTestnet, unichainSepolia, zircuitTestnet } from "viem/chains";
+import { hederaTestnet, lineaSepolia, rootstockTestnet, zircuitTestnet } from "viem/chains";
+
+const unichainSepolia = {
+    id: 1301,
+    name: 'UniChain Sepolia',
+    iconUrl: 'https://s2.coinmarketcap.com/static/img/coins/64x64/5805.png',
+    iconBackground: '#fff',
+    nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 },
+    rpcUrls: {
+      default: { http: ['https://endpoints.omniatech.io/v1/unichain/sepolia/public'] },
+    },
+  }
 
 export const stablecoins = {
     [zircuitTestnet.id]: {
