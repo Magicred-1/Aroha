@@ -3,7 +3,6 @@
 import { Dispatch, SetStateAction } from "react";
 import { Tuple } from "./Tuple";
 import { TupleArray } from "./TupleArray";
-import { AbiParameter } from "abitype";
 import {
   AddressInput,
   Bytes32Input,
@@ -11,8 +10,9 @@ import {
   InputBase,
   IntegerInput,
   IntegerVariant,
-} from "~~/components/scaffold-eth";
-import { AbiParameterTuple } from "~~/utils/scaffold-eth/contract";
+} from "@/components/scaffold-eth";
+import { AbiParameterTuple } from "@/utils/scaffold-eth/contract";
+import { AbiParameter } from "abitype";
 
 type ContractInputProps = {
   setForm: Dispatch<SetStateAction<Record<string, any>>>;

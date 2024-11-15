@@ -2,12 +2,12 @@
 
 import { AddressCopyIcon } from "./AddressCopyIcon";
 import { AddressLinkWrapper } from "./AddressLinkWrapper";
+import { BlockieAvatar } from "@/components/scaffold-eth";
+import { useTargetNetwork } from "@/hooks/scaffold-eth/useTargetNetwork";
+import { getBlockExplorerAddressLink } from "@/utils/scaffold-eth";
 import { Address as AddressType, getAddress, isAddress } from "viem";
 import { normalize } from "viem/ens";
 import { useEnsAvatar, useEnsName } from "wagmi";
-import { BlockieAvatar } from "~~/components/scaffold-eth";
-import { useTargetNetwork } from "~~/hooks/scaffold-eth/useTargetNetwork";
-import { getBlockExplorerAddressLink } from "~~/utils/scaffold-eth";
 
 const textSizeMap = {
   "3xs": "text-[10px]",

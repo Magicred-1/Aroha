@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
+import { CommonInputProps, InputBase, isENS } from "@/components/scaffold-eth";
 import { blo } from "blo";
 import { useDebounceValue } from "usehooks-ts";
 import { Address, isAddress } from "viem";
 import { normalize } from "viem/ens";
 import { useEnsAddress, useEnsAvatar, useEnsName } from "wagmi";
-import { CommonInputProps, InputBase, isENS } from "~~/components/scaffold-eth";
 
 /**
  * Address input with ENS name resolution

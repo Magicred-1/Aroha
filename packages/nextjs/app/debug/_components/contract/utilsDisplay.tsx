@@ -1,8 +1,8 @@
 import { ReactElement, useState } from "react";
+import { Address } from "@/components/scaffold-eth";
+import { replacer } from "@/utils/scaffold-eth/common";
 import { TransactionBase, TransactionReceipt, formatEther, isAddress, isHex } from "viem";
 import { ArrowsRightLeftIcon } from "@heroicons/react/24/solid";
-import { Address } from "~~/components/scaffold-eth";
-import { replacer } from "~~/utils/scaffold-eth/common";
 
 type DisplayContent =
   | string

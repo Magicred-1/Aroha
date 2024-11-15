@@ -2,9 +2,6 @@
 
 import { useEffect, useState } from "react";
 import { InheritanceTooltip } from "./InheritanceTooltip";
-import { Abi, AbiFunction } from "abitype";
-import { Address, TransactionReceipt } from "viem";
-import { useAccount, useWaitForTransactionReceipt, useWriteContract } from "wagmi";
 import {
   ContractInput,
   TxReceipt,
@@ -12,10 +9,13 @@ import {
   getInitialFormState,
   getParsedContractFunctionArgs,
   transformAbiFunction,
-} from "~~/app/debug/_components/contract";
-import { IntegerInput } from "~~/components/scaffold-eth";
-import { useTransactor } from "~~/hooks/scaffold-eth";
-import { useTargetNetwork } from "~~/hooks/scaffold-eth/useTargetNetwork";
+} from "@/app/debug/_components/contract";
+import { IntegerInput } from "@/components/scaffold-eth";
+import { useTransactor } from "@/hooks/scaffold-eth";
+import { useTargetNetwork } from "@/hooks/scaffold-eth/useTargetNetwork";
+import { Abi, AbiFunction } from "abitype";
+import { Address, TransactionReceipt } from "viem";
+import { useAccount, useWaitForTransactionReceipt, useWriteContract } from "wagmi";
 
 type WriteOnlyFunctionFormProps = {
   abi: Abi;

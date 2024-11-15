@@ -1,6 +1,6 @@
 import { DebugContracts } from "./_components/DebugContracts";
+import { getMetadata } from "@/utils/scaffold-eth/getMetadata";
 import type { NextPage } from "next";
-import { getMetadata } from "~~/utils/scaffold-eth/getMetadata";
 
 export const metadata = getMetadata({
   title: "Debug Contracts",

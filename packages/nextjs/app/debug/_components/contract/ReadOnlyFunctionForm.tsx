@@ -2,9 +2,6 @@
 
 import { useEffect, useState } from "react";
 import { InheritanceTooltip } from "./InheritanceTooltip";
-import { Abi, AbiFunction } from "abitype";
-import { Address } from "viem";
-import { useReadContract } from "wagmi";
 import {
   ContractInput,
   displayTxResult,
@@ -12,9 +9,12 @@ import {
   getInitialFormState,
   getParsedContractFunctionArgs,
   transformAbiFunction,
-} from "~~/app/debug/_components/contract";
-import { useTargetNetwork } from "~~/hooks/scaffold-eth/useTargetNetwork";
-import { getParsedError, notification } from "~~/utils/scaffold-eth";
+} from "@/app/debug/_components/contract";
+import { useTargetNetwork } from "@/hooks/scaffold-eth/useTargetNetwork";
+import { getParsedError, notification } from "@/utils/scaffold-eth";
+import { Abi, AbiFunction } from "abitype";
+import { Address } from "viem";
+import { useReadContract } from "wagmi";
 
 type ReadOnlyFunctionFormProps = {
   contractAddress: Address;
