@@ -34,6 +34,7 @@ contract SetupAhora is Script, ChainConfigs, DeploymentConstants {
         AhoraTrade ahora = AhoraTrade(AHORA);
         ahora.addSupportedToken(USDTBL_UNICHAIN);
         ahora.setPriceFeedId(USDTBL_UNICHAIN, BASE_PRICE_FEED_ID);
+        ahora.setDestinationChainEids(USDTBL_UNICHAIN, baseId);
         ahora.setPeer(baseId, addressToBytes32(BASE_OAPP));
 
         ERC20Fund unichainToken = ERC20Fund(USDTBL_UNICHAIN);

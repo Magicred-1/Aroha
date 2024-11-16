@@ -56,4 +56,8 @@ contract AhoraStorage is Ownable {
         require(priceFeedId != bytes32(0), "Invalid price feed ID");
         priceFeedIds[token] = priceFeedId;
     }
+
+    function setDestinationChainEids(address token, uint32 eid) external onlyOwner {
+        destinationChainEids[token] = eid;
+    }
 }

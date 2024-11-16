@@ -13,7 +13,7 @@ contract DeploymentConstants {
     address public constant BLB01_SCROLL = 0x3a0c752A41FC0925f60c6C2Ba32881C14e8D7575;
 
     // Layer 0
-    address public constant AHORA = 0xD9fBDE12BAc5681B8b9a92810c3f3A48286A916e;
+    address public constant AHORA = 0x763D95d1F6471f1E99024D704005750FB0fCa0c0;
     uint32 public ahoraId = 1;
     address public constant BASE_OAPP = 0xFeBfF4aE0A55Be9A48E239648DF53e0FC462F60A;
     uint32 public baseId = 2;
