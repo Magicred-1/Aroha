@@ -1,16 +1,15 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.22;
 
-import { BaseOApp } from "@layerzerolabs/lz-evm-oapp-v2/contracts/oapp/BaseOApp.sol";
-import { MessagingFee, Origin } from "@layerzerolabs/lz-evm-oapp-v2/contracts/oapp/OApp.sol";
-import { abi } from "@layerzerolabs/lz-evm-oapp-v2/contracts/oapp/libs/Encoding.sol";
-import { ERC20Fund } from "./ERC20Fund.sol";
+import { OApp, Origin, MessagingFee } from "@layerzerolabs/oapp-evm/contracts/oapp/OApp.sol";
+import { SafeERC20 } from "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
+import { IERC20 } from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
-contract DestinationOApp is BaseOApp {
-    // Mapping of token address to ERC20Fund instance
-    mapping(address => ERC20Fund) public tokens;
+contract DestinationOApp is OApp {
+    using SafeERC20 for IERC20;
+    mapping(address => IERC20) public tokens;
 
-    constructor(address _endpoint, address _owner) BaseOApp(_endpoint, _owner) {}
+    constructor(address _endpoint, address _owner) OApp(_endpoint, _owner) {}
 
     function _lzReceive(
         Origin calldata origin,
@@ -25,14 +24,8 @@ contract DestinationOApp is BaseOApp {
             (bytes32, address, address, uint256)
         );
 
-        bool success = false;
-
-        try {
-            success = _handleTokenMint(buyer, token, amount);
-        } catch {
-            success = false;
-        }
-
+        // The contract will mint and hold the tokens
+        bool success = _handleTokenMint(address(this), token, amount);
         // Encode response message
         bytes memory responsePayload = abi.encode(purchaseId, success);
 
@@ -47,14 +40,10 @@ contract DestinationOApp is BaseOApp {
         );
     }
 
-    function _handleTokenMint(
-        address buyer,
-        address token,
-        uint256 amount
-    ) private returns (bool) {
+    function _handleTokenMint(address buyer, address token, uint256 amount) private returns (bool) {
         ERC20Fund fundToken = tokens[token];
         require(address(fundToken) != address(0), "Token not registered");
-        
+
         // Mint tokens to the buyer
         fundToken.mint(buyer, amount);
         return true;

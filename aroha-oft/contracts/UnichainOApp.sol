@@ -1,13 +1,11 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.22;
 
-import { BaseOApp } from "@layerzerolabs/lz-evm-oapp-v2/contracts/oapp/BaseOApp.sol";
-import { MessagingFee, Origin } from "@layerzerolabs/lz-evm-oapp-v2/contracts/oapp/OApp.sol";
-import { abi } from "@layerzerolabs/lz-evm-oapp-v2/contracts/oapp/libs/Encoding.sol";
+import { OApp, Origin, MessagingFee } from "@layerzerolabs/oapp-evm/contracts/oapp/OApp.sol";
 import { IERC20 } from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import { SafeERC20 } from "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
 
-contract UnichainOApp is BaseOApp {
+contract UnichainOApp is OApp {
     using SafeERC20 for IERC20;
 
     // Events
@@ -17,13 +15,9 @@ contract UnichainOApp is BaseOApp {
     // Mapping to track pending purchases
     mapping(bytes32 => bool) public pendingPurchases;
 
-    constructor(address _endpoint, address _owner) BaseOApp(_endpoint, _owner) {}
+    constructor(address _endpoint, address _owner) OApp(_endpoint, _owner) {}
 
-    function purchaseToken(
-        uint32 dstEid,
-        address token,
-        uint256 tokenAmount,
-    ) external payable {
+    function purchaseToken(uint32 dstEid, address token, uint256 tokenAmount) external payable {
         // Generate purchase ID
         bytes32 purchaseId = keccak256(abi.encodePacked(msg.sender, dstEid, token, tokenAmount, block.timestamp));
 

@@ -3,16 +3,13 @@ pragma solidity ^0.8.22;
 
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/cryptography/MerkleProof.sol";
-import "./MyOFT.sol";
 
 contract Ahora is Ownable {
     bytes32 public merkleRoot;
 
     mapping(address => bool) private whitelistedAddresses;
 
-    constructor(address _initialOwner, bytes32 _merkleRoot)
-        Ownable(_initialOwner)
-    {
+    constructor(address _initialOwner, bytes32 _merkleRoot) Ownable(_initialOwner) {
         merkleRoot = _merkleRoot;
     }
 
@@ -24,10 +21,7 @@ contract Ahora is Ownable {
 
     // }
 
-   function whitelist(
-        bytes32[] memory proof,
-        address addr
-    ) public {
+    function whitelist(bytes32[] memory proof, address addr) public {
         // Step 1: Generate the leaf node
         bytes32 leaf = keccak256(abi.encode(addr));
 
@@ -38,7 +32,7 @@ contract Ahora is Ownable {
         whitelistedAddresses[addr] = true;
     }
 
-    function isWhitelisted(address _account, bytes32[] calldata _proof) internal view returns(bool) {
+    function isWhitelisted(address _account, bytes32[] calldata _proof) internal view returns (bool) {
         bytes32 leaf = keccak256(abi.encode(keccak256(abi.encode(_account))));
         return MerkleProof.verify(_proof, merkleRoot, leaf);
     }

@@ -7,9 +7,8 @@ import { PoolKey } from "v4-core/src/types/PoolKey.sol";
 import { CurrencyLibrary, Currency } from "v4-core/src/types/Currency.sol";
 import { Constants } from "./Constants.sol";
 import { LPFactory } from "./LPFactory.sol";
-import { MyOFT } from "./MyOFT.sol";
 
-contract ArohaTrade is LPFactory, MyOFT {
+contract ArohaTrade is LPFactory {
     event TokenBought(address indexed user, address indexed token, uint256 amount, bool createLP);
 
     constructor(
@@ -20,12 +19,7 @@ contract ArohaTrade is LPFactory, MyOFT {
         address delegate
     ) LPFactory(_poolManager, _hook, pythContract) MyOFT("Aroha Token", "AROHA", lzEndpoint, delegate) {}
 
-    function buy(
-        address token,
-        uint256 amountIn,
-        bool createLP,
-        bytes[] calldata priceUpdates
-    ) external payable {
+    function buy(address token, uint256 amountIn, bool createLP, bytes[] calldata priceUpdates) external payable {
         require(amountIn > 0, "Invalid purchase amount");
 
         // Fetch price of the token using Pyth Oracle
@@ -97,12 +91,14 @@ contract ArohaTrade is LPFactory, MyOFT {
             new bytes(0) // hook data
         );
 
-        POSITION_MANAGER.modifyLiquidities(
-            abi.encode(actions, mintParams),
-            block.timestamp + 60
-        );
+        POSITION_MANAGER.modifyLiquidities(abi.encode(actions, mintParams), block.timestamp + 60);
 
-        emit LiquidityAdded(Currency.unwrap(pool.currency0), Currency.unwrap(pool.currency1), int256(ethAmount), int256(tokenAmount));
+        emit LiquidityAdded(
+            Currency.unwrap(pool.currency0),
+            Currency.unwrap(pool.currency1),
+            int256(ethAmount),
+            int256(tokenAmount)
+        );
     }
 
     function sell(
@@ -153,21 +149,9 @@ contract ArohaTrade is LPFactory, MyOFT {
         bytes memory actions = abi.encodePacked(uint8(Actions.BURN_POSITION), uint8(Actions.SETTLE_PAIR));
 
         bytes;
-        params[0] = abi.encode(
-            poolKey,
-            tickLower,
-            tickUpper,
-            liquidity,
-            amount0,
-            amount1,
-            address(this),
-            new bytes(0)
-        );
+        params[0] = abi.encode(poolKey, tickLower, tickUpper, liquidity, amount0, amount1, address(this), new bytes(0));
 
-        POSITION_MANAGER.modifyLiquidities(
-            abi.encode(actions, params),
-            block.timestamp + 60
-        );
+        POSITION_MANAGER.modifyLiquidities(abi.encode(actions, params), block.timestamp + 60);
 
         emit LPWithdrawn(token, liquidity, amount0, amount1);
     }
@@ -189,5 +173,4 @@ contract ArohaTrade is LPFactory, MyOFT {
 
         return (token0Liquidity, token1Liquidity);
     }
-
 }
