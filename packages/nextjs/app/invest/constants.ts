@@ -1,6 +1,5 @@
 import Anemoy from "../assets/Anemoy.jpeg";
 
-
 export const chains = [
   {
     title: "Anemoy Liquid Treasury Fund 1",
@@ -11,6 +10,7 @@ export const chains = [
     title: "Spiko US T-Bills Money Market Fund",
     description: "USTBL",
     logo: "https://assets.coingecko.com/coins/images/39666/standard/USTB.png?1723541269",
+    token_address: "0x8B3200C0e21f121df60EF717A74617Df4Fa367af",
   },
   {
     title: "Cetes",
