@@ -3,7 +3,7 @@
 import React, { ReactNode, useEffect, useState } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Web3AuthConnector } from "@web3auth/web3auth-wagmi-connector";
-import { Config, WagmiProvider, createConfig, http, useAccount, useConnect, useDisconnect } from "wagmi";
+import { Config, WagmiProvider, createConfig, http } from "wagmi";
 import { polygonAmoy, sepolia, unichainSepolia } from "wagmi/chains";
 import { metaMask } from "wagmi/connectors";
 import { useWeb3AuthConnectorInstance } from "@/hooks/useWeb3AuthConnectorInstance";

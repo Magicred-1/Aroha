@@ -2,14 +2,14 @@
 
 import React, { createContext, useContext, useState } from "react";
 import Link, { LinkProps } from "next/link";
-import { cn } from "@/lib/utils";
 import { IconMenu2, IconX } from "@tabler/icons-react";
 import { AnimatePresence, motion } from "framer-motion";
+import { cn } from "@/lib/utils";
 
 interface Links {
   label: string;
-  href: string;
   icon: React.JSX.Element | React.ReactNode;
+  onClick: () => void;
 }
 
 interface SidebarContextProps {
@@ -124,10 +124,7 @@ export const MobileSidebar = ({ className, children, ...props }: React.Component
                 className,
               )}
             >
-              <div
-                className="absolute right-10 top-10 z-50 text-neutral-200"
-                onClick={() => setOpen(!open)}
-              >
+              <div className="absolute right-10 top-10 z-50 text-neutral-200" onClick={() => setOpen(!open)}>
                 <IconX />
               </div>
               {children}
@@ -142,10 +139,10 @@ export const MobileSidebar = ({ className, children, ...props }: React.Component
 export const SidebarLink = ({ link, className, ...props }: { link: Links; className?: string; props?: LinkProps }) => {
   const { open, animate } = useSidebar();
   return (
-    <Link
-      href={link.href}
+    <button
       className={cn("flex items-center justify-start gap-2  group/sidebar py-2", className)}
       {...props}
+      onClick={() => link.onClick()}
     >
       {link.icon}
 
@@ -158,6 +155,6 @@ export const SidebarLink = ({ link, className, ...props }: { link: Links; classN
       >
         {link.label}
       </motion.span>
-    </Link>
+    </button>
   );
 };

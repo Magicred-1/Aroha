@@ -45,6 +45,7 @@ export const useWeb3AuthConnectorInstance = () => {
     adapterSettings: {
       uxMode: UX_MODE.REDIRECT,
     },
+    privateKeyProvider,
   });
 
   web3AuthInstance.configureAdapter(openloginAdapter);
