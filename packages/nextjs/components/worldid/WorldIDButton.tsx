@@ -2,7 +2,7 @@ import { IDKitWidget, VerificationLevel } from "@worldcoin/idkit";
 import { useEffect, useState } from "react";
 import { useWriteContract } from "wagmi";
 import { StandardMerkleTree } from "@openzeppelin/merkle-tree";
-import { whitelistABI } from "./abi/whitelistABI";
+import { AhoraABI } from "../abi/Ahora";
 import { useAccount } from "wagmi";
 
 const onSuccess = async (response: any) => {
@@ -48,7 +48,7 @@ export default function WorldcoinButton() {
       const proof = getProofForAddress({ tree, address });
 
       writeContract({
-        abi: whitelistABI, // Use correct key for ABI
+        abi: AhoraABI, // Use correct key for ABI
         address: "0x6b175474e89094c44da98b954eedeac495271d0f", // Contract address
         functionName: "whitelist",
         args: [proof, address],
