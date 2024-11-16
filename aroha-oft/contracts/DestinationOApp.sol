@@ -4,14 +4,11 @@ pragma solidity ^0.8.22;
 import { BaseOApp } from "@layerzerolabs/lz-evm-oapp-v2/contracts/oapp/BaseOApp.sol";
 import { MessagingFee, Origin } from "@layerzerolabs/lz-evm-oapp-v2/contracts/oapp/OApp.sol";
 import { abi } from "@layerzerolabs/lz-evm-oapp-v2/contracts/oapp/libs/Encoding.sol";
-import { ERC20 } from "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+import { ERC20Fund } from "./ERC20Fund.sol";
 
 contract DestinationOApp is BaseOApp {
-    // Events
-    event TokenMinted(address buyer, address token, uint256 amount);
-
-    // Mapping of token address to MyOFT instance
-    mapping(address => ERC20) public tokens;
+    // Mapping of token address to ERC20Fund instance
+    mapping(address => ERC20Fund) public tokens;
 
     constructor(address _endpoint, address _owner) BaseOApp(_endpoint, _owner) {}
 
@@ -30,9 +27,8 @@ contract DestinationOApp is BaseOApp {
 
         bool success = false;
 
-        try tokens[token].mint(buyer, amount) {
-            success = true;
-            emit TokenMinted(buyer, token, amount);
+        try {
+            success = _handleTokenMint(buyer, token, amount);
         } catch {
             success = false;
         }
@@ -51,9 +47,22 @@ contract DestinationOApp is BaseOApp {
         );
     }
 
+    function _handleTokenMint(
+        address buyer,
+        address token,
+        uint256 amount
+    ) private returns (bool) {
+        ERC20Fund fundToken = tokens[token];
+        require(address(fundToken) != address(0), "Token not registered");
+        
+        // Mint tokens to the buyer
+        fundToken.mint(buyer, amount);
+        return true;
+    }
+
     // Admin function to register new tokens
     function registerToken(address token) external onlyOwner {
         require(address(tokens[token]) == address(0), "Token already registered");
-        tokens[token] = ERC20(token);
+        tokens[token] = ERC20Fund(token);
     }
 }
