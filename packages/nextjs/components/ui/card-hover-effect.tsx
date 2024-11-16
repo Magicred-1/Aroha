@@ -4,17 +4,12 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { CardFooter } from "./card";
-import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "framer-motion";
 import { Token } from "@/app/dashboard/data/tokenList";
+import { useWeb3AuthConnectorInstance } from "@/hooks/useWeb3AuthConnectorInstance";
+import { cn } from "@/lib/utils";
 
-export const HoverEffect = ({
-  items,
-  className,
-}: {
-  items: Token[];
-  className?: string;
-}) => {
+export const HoverEffect = ({ items, className }: { items: Token[]; className?: string }) => {
   let [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
@@ -45,18 +40,14 @@ export const HoverEffect = ({
           <Card className="  w-full text-center flex flex-col justify-between">
             <div>
               {" "}
-              <Image
-                src={item.logo_url}
-                alt="logo"
-                width={50}
-                height={50}
-                className=" ml-[30%]"
-              />
+              <Image src={item.logo_url} alt="logo" width={50} height={50} className=" ml-[30%]" />
               <CardTitle>{item.name}</CardTitle>
               <CardDescription>{item.symbol}</CardDescription>
             </div>
 
-            <div className=" w-full border-t pt-4 border-wheat group-hover:text-green-400 group-hover:font-bold">BUY</div>
+            <div className=" w-full border-t pt-4 border-wheat group-hover:text-green-400 group-hover:font-bold">
+              BUY
+            </div>
           </Card>
         </div>
       ))}

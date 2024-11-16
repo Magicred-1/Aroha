@@ -1,9 +1,9 @@
 // Web3Auth Libraries
 import { useCallback } from "react";
+import { AuthAdapter } from "@web3auth/auth-adapter";
 import { CHAIN_NAMESPACES, UX_MODE, WALLET_ADAPTERS, WEB3AUTH_NETWORK } from "@web3auth/base";
 import { EthereumPrivateKeyProvider } from "@web3auth/ethereum-provider";
 import { Web3AuthNoModal } from "@web3auth/no-modal";
-import { OpenloginAdapter } from "@web3auth/openlogin-adapter";
 import { Chain, sepolia } from "wagmi/chains";
 
 export enum Web3AuthProvider {
@@ -41,14 +41,14 @@ export const useWeb3AuthConnectorInstance = () => {
     enableLogging: true,
   });
 
-  const openloginAdapter = new OpenloginAdapter({
+  const authAdapter = new AuthAdapter({
     adapterSettings: {
       uxMode: UX_MODE.REDIRECT,
     },
     privateKeyProvider,
   });
 
-  web3AuthInstance.configureAdapter(openloginAdapter);
+  web3AuthInstance.configureAdapter(authAdapter);
 
   const getProviderConfig = (loginProvider: Web3AuthProvider) => {
     switch (loginProvider) {
@@ -67,7 +67,7 @@ export const useWeb3AuthConnectorInstance = () => {
 
       try {
         await web3AuthInstance.init();
-        const web3authProvider = await web3AuthInstance.connectTo(WALLET_ADAPTERS.OPENLOGIN, providerConfig);
+        const web3authProvider = await web3AuthInstance.connectTo(WALLET_ADAPTERS.AUTH, providerConfig);
       } catch (error) {
         throw new Error(`Failed to connect with wallet: ${error}`);
       }
