@@ -52,8 +52,8 @@ library OFTPairConfig {
 
         // Pair 6: MATIC (Unichain-Base)
         pairs[0] = TokenConfig({
-            name: "MATIC OFT",
-            symbol: "MATIC",
+            name: "Spiko US T-Bills Money Market Fund",
+            symbol: "USDTBL",
             decimals: 18,
             unichainId: 1301, // Unichain Sepolia
             remoteChainId: 84532 // Base Sepolia

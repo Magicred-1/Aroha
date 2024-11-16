@@ -3,12 +3,12 @@ pragma solidity ^0.8.22;
 
 import { Script } from "forge-std/Script.sol";
 import { Constants } from "../contracts/Constants.sol";
-import { MyOFT } from "../contracts/MyOFT.sol";
 import { OFTPairConfig } from "./OFTPairConfig.sol";
 import { ChainConfigs } from "./ChainConfigs.sol";
 import { console } from "forge-std/console.sol";
+import { ERC20Fund } from "../contracts/ERC20Fund.sol";
 
-contract DeployOFT is Script, Constants, ChainConfigs {
+contract DeployERC20Funds is Script, Constants, ChainConfigs {
     bytes32 constant SALT = bytes32(uint256(1));
 
     function run() external {
@@ -42,7 +42,7 @@ contract DeployOFT is Script, Constants, ChainConfigs {
         // Verify we're on the right chain
         require(block.chainid == chainId, "Wrong chain");
 
-        console.log("\n=== Deploying %s to %s ===", config.name, chainConfig.name);
+        console.log("\n=== Deploying %s to %s ===", chainConfig.name, chainConfig.name);
 
         // Start broadcast with the private key
         vm.startBroadcast(privateKey);
@@ -52,9 +52,9 @@ contract DeployOFT is Script, Constants, ChainConfigs {
         bytes32 salt = keccak256(abi.encodePacked(SALT, pairIndex));
 
         // Deploy the contract using CREATE2
-        MyOFT oft = new MyOFT{ salt: salt }(config.name, config.symbol, chainConfig.lzEndpoint, deployer);
+        ERC20Fund token = new ERC20Fund{ salt: salt }(config.name, config.symbol, deployer);
 
-        console.log("OFT deployed at:", address(oft));
+        console.log("Token deployed at:", address(token));
         console.log("Chain ID:", chainId);
         console.log("LZ Endpoint:", chainConfig.lzEndpoint);
 

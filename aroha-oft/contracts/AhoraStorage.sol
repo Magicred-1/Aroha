@@ -32,8 +32,7 @@ contract AhoraStorage is Ownable {
     mapping(address => bytes32) public priceFeedIds;
 
     // USDC token contract
-    // FIXME proper contract
-    ERC20 public immutable USDC = ERC20(0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48);
+    ERC20 public immutable USDC = ERC20(0xdcCD58bd9D8Cd4486514bd8488fc49AcD4e136d7);
 
     // Mapping from Unichain token address to destination chain EID
     mapping(address => uint32) public destinationChainEids;

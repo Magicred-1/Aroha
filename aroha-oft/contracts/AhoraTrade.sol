@@ -3,6 +3,7 @@ pragma solidity ^0.8.22;
 
 import { UnichainOApp } from "./UnichainOApp.sol";
 import { TokenizedFundsOracle } from "./TokenizedFundsOracle.sol";
+import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
 contract AhoraTrade is UnichainOApp, TokenizedFundsOracle {
     event TokenBought(address buyer, address token, uint256 amountUSD, uint256 tokenAmount, bool shouldLP);
@@ -27,11 +28,12 @@ contract AhoraTrade is UnichainOApp, TokenizedFundsOracle {
         require(dstEid != 0, "Destination chain not configured");
 
         // Get token price in USD with price updates
-        uint256 tokenPrice = fetchPriceFeed(priceUpdates, priceFeedIds[token], USDC.decimals());
+        uint256 tokenPrice = fetchPriceFeed(priceUpdates, priceFeedIds[token], ERC20(token).decimals());
         require(tokenPrice > 0, "Invalid token price");
 
         // Calculate token amount based on USD amount
-        uint256 tokenAmount = (amountToBuyInUSD * USDC.decimals()) / tokenPrice;
+        // TODO Validate if tokenPrice is already with the decimals
+        uint256 tokenAmount = amountToBuyInUSD / tokenPrice;
 
         // Transfer USDC from user to contract
         USDC.transferFrom(msg.sender, address(this), amountToBuyInUSD);
