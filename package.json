@@ -22,7 +22,6 @@
     "foundry:lint": "yarn workspace @se-2/foundry lint",
     "foundry:test": "yarn workspace @se-2/foundry test",
     "generate": "yarn account:generate",
-    "postinstall": "husky install",
     "next:build": "yarn workspace @se-2/nextjs build",
     "next:check-types": "yarn workspace @se-2/nextjs check-types",
     "next:format": "yarn workspace @se-2/nextjs format",
@@ -36,7 +35,6 @@
     "verify": "yarn workspace @se-2/foundry verify"
   },
   "devDependencies": {
-    "husky": "~8.0.3",
     "lint-staged": "~13.2.2"
   },
   "packageManager": "yarn@3.2.3",
