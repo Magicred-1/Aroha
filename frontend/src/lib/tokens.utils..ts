@@ -25,3 +25,21 @@ export const stablecoins = {
         "USDC": "0.0.429274",
     },
 }
+
+export const contracts = {
+    [zircuitTestnet.id]: {
+      "aroha": ""
+    },
+    [unichainSepolia.id]: {
+      "aroha": ""
+    },
+    [rootstockTestnet.id]: {
+      "aroha": ""
+    },
+    [lineaSepolia.id]: {
+      "aroha": ""
+    },
+    [hederaTestnet.id]: {
+      "aroha": "",
+    },
+}
