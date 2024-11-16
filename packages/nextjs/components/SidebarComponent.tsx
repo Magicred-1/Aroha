@@ -58,7 +58,7 @@ export function SidebarComponent() {
       onClick: () => logout(),
     },
   ];
-//   const [sidebarOpen, setSidebarOpen] = useState(false);
+  //   const [sidebarOpen, setSidebarOpen] = useState(false);
   // const { isConnected } = useAccount()
   // if (!isConnected) {
   //     return null;
@@ -69,7 +69,11 @@ export function SidebarComponent() {
         {/* <ChainSelector options={allChains} onSelect={switchToAnotherChain} currentChainId={config.state.chainId} /> */}
         <div className="flex flex-col gap-2">
           {links.map((link, index) => (
-            <SidebarLink key={index} link={link} className="hover:bg-gray-800 transition-colors  pl-2 pr-7 py-2 rounded-lg" />
+            <SidebarLink
+              key={index}
+              link={link}
+              className="hover:bg-gray-800 transition-colors  pl-2 pr-7 py-2 rounded-lg"
+            />
           ))}
         </div>
       </SidebarBody>
