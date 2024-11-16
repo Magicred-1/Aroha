@@ -14,59 +14,21 @@ library OFTPairConfig {
     function getTokenPairs() internal pure returns (TokenConfig[] memory) {
         TokenConfig[] memory pairs = new TokenConfig[](1);
 
-        // // Pair 2: USDC (Unichain-Polygon Amoy)
-        // pairs[1] = TokenConfig({
-        //     name: "USDC OFT",
-        //     symbol: "USDC",
-        //     decimals: 6,
-        //     unichainId: 1301,  // Unichain Sepolia
-        //     remoteChainId: 80002  // Polygon Amoy
-        // });
-
-        // // Pair 3: WBTC (Unichain-Linea)
-        // pairs[2] = TokenConfig({
-        //     name: "Wrapped BTC OFT",
-        //     symbol: "WBTC",
-        //     decimals: 8,
-        //     unichainId: 1301,  // Unichain Sepolia
-        //     remoteChainId: 59141  // Linea Sepolia
-        // });
-
-        // // Pair 4: WETH (Unichain-Hedera)
-        // pairs[3] = TokenConfig({
-        //     name: "Wrapped ETH OFT",
-        //     symbol: "WETH",
+        // pairs[0] = TokenConfig({
+        //     name: "US Treasuries",
+        //     symbol: "OUSG",
         //     decimals: 18,
-        //     unichainId: 1301,  // Unichain Sepolia
-        //     remoteChainId: 296  // Hedera Testnet
+        //     unichainId: 1301, // Unichain Sepolia
+        //     remoteChainId: 80002 // Polygon Amoy
         // });
 
-        // // Pair 5: DAI (Unichain-Zircuit)
-        // pairs[4] = TokenConfig({
-        //     name: "DAI OFT",
-        //     symbol: "DAI",
-        //     decimals: 18,
-        //     unichainId: 1301,  // Unichain Sepolia
-        //     remoteChainId: 48899  // Zircuit Testnet
-        // });
-
-        // Pair 6: MATIC (Unichain-Base)
         pairs[0] = TokenConfig({
-            name: "Spiko US T-Bills Money Market Fund",
-            symbol: "USDTBL",
+            name: "Backed lB01 $ Treasury Bond",
+            symbol: "blB01",
             decimals: 18,
             unichainId: 1301, // Unichain Sepolia
-            remoteChainId: 84532 // Base Sepolia
+            remoteChainId: 534351 // Scroll Testnet
         });
-
-        // // Pair 7: BNB (Unichain-Scroll)
-        // pairs[6] = TokenConfig({
-        //     name: "BNB OFT",
-        //     symbol: "BNB",
-        //     decimals: 18,
-        //     unichainId: 1301,  // Unichain Sepolia
-        //     remoteChainId: 534351  // Scroll Testnet
-        // });
 
         return pairs;
     }

@@ -14,12 +14,12 @@ contract DeployBase is Script, ChainConfigs, DeploymentConstants {
         // Load private key from .env
         uint256 privateKey = vm.envUint("PRIVATE_KEY");
 
-        ChainConfig memory chainConfig = chainConfigs[84532];
+        ChainConfig memory chainConfig = chainConfigs[534351];
         // Create fork for this chain
         vm.createSelectFork(vm.envString(chainConfig.rpcUrl));
 
         // Verify we're on the right chain
-        require(block.chainid == 84532, "Wrong chain");
+        require(block.chainid == 534351, "Wrong chain");
 
         console.log("\n=== Deploying to %s ===", chainConfig.name);
 
@@ -28,7 +28,7 @@ contract DeployBase is Script, ChainConfigs, DeploymentConstants {
         address deployer = vm.addr(privateKey);
 
         DestinationOApp destination = new DestinationOApp(chainConfig.lzEndpoint, deployer);
-        destination.registerToken(USDTBL_BASE);
+        destination.registerToken(BLB01_SCROLL);
 
         console.log("Token deployed at:", address(destination));
         console.log("Chain ID:", block.chainid);

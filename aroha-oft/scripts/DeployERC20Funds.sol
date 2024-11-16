@@ -9,7 +9,7 @@ import { console } from "forge-std/console.sol";
 import { ERC20Fund } from "../contracts/ERC20Fund.sol";
 
 contract DeployERC20Funds is Script, Constants, ChainConfigs {
-    bytes32 constant SALT = bytes32(uint256(1));
+    bytes32 constant SALT = bytes32(uint256(2));
 
     function run() external {
         // Load private key from .env
