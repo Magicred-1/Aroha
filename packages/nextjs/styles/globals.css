@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap');
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
@@ -6,9 +7,15 @@
 [data-theme] {
   background: black;
 }
+@layer base {
+  body {
+    @apply font-lexend;
+  }
+}
 
 body {
   min-height: 100vh;
+  font-family: 'Lexend';
 }
 
 h1,
