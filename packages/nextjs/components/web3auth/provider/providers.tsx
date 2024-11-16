@@ -37,9 +37,9 @@ export const Providers = ({ children }: ProvidersProps) => {
 
     const config = createConfig({
       chains: [
+        unichainSepolia,
         sepolia,
         polygonAmoy,
-        unichainSepolia,
         rootstockTestnet,
         lineaSepolia,
         hederaTestnet,
@@ -47,9 +47,9 @@ export const Providers = ({ children }: ProvidersProps) => {
         scrollSepolia,
       ],
       transports: {
+        [unichainSepolia.id]: http(),
         [sepolia.id]: http(),
         [polygonAmoy.id]: http(),
-        [unichainSepolia.id]: http(),
         [rootstockTestnet.id]: http(),
         [lineaSepolia.id]: http(),
         [hederaTestnet.id]: http(),

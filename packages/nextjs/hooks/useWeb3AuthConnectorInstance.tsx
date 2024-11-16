@@ -4,7 +4,7 @@ import { AuthAdapter } from "@web3auth/auth-adapter";
 import { CHAIN_NAMESPACES, UX_MODE, WALLET_ADAPTERS, WEB3AUTH_NETWORK } from "@web3auth/base";
 import { EthereumPrivateKeyProvider } from "@web3auth/ethereum-provider";
 import { Web3AuthNoModal } from "@web3auth/no-modal";
-import { Chain, sepolia } from "wagmi/chains";
+import { Chain, unichainSepolia } from "wagmi/chains";
 
 export enum Web3AuthProvider {
   GOOGLE,
@@ -16,12 +16,12 @@ export const useWeb3AuthConnectorInstance = () => {
   const name = "My App Name";
   const chainConfig = {
     chainNamespace: CHAIN_NAMESPACES.EIP155,
-    chainId: "0x" + sepolia.id.toString(16),
-    rpcTarget: sepolia.rpcUrls.default.http[0], // This is the public RPC we have added, please pass on your own endpoint while creating an app
-    displayName: sepolia.name,
-    tickerName: sepolia.nativeCurrency?.name,
-    ticker: sepolia.nativeCurrency?.symbol,
-    blockExplorerUrl: sepolia.blockExplorers?.default.url[0] as string,
+    chainId: "0x" + unichainSepolia.id.toString(16),
+    rpcTarget: unichainSepolia.rpcUrls.default.http[0], // This is the public RPC we have added, please pass on your own endpoint while creating an app
+    displayName: unichainSepolia.name,
+    tickerName: unichainSepolia.nativeCurrency?.name,
+    ticker: unichainSepolia.nativeCurrency?.symbol,
+    blockExplorerUrl: unichainSepolia.blockExplorers?.default.url[0] as string,
   };
 
   const privateKeyProvider = new EthereumPrivateKeyProvider({ config: { chainConfig } });
