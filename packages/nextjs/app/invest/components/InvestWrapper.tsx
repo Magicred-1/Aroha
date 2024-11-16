@@ -1,13 +1,13 @@
 import React from "react";
-import { chains } from "../constants";
 import { HoverEffect } from "@/components/ui/card-hover-effect";
+import { tokenList } from "@/app/dashboard/data/tokenList";
 
 const InvestWrapper = () => {
   return (
-      <div className="max-w-7xl mx-auto px-6">
-          <h1 className="text-[24px] text-wheat font-bold my-2">Marketplace</h1>
-  <HoverEffect items={chains} />
-</div>
+    <div className="max-w-5xl mx-auto px-8 my-12">
+      <h1 className="text-4xl">Assets</h1>
+      <HoverEffect items={tokenList} className="grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10" />
+    </div>
   );
 };
 
