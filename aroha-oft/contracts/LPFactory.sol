@@ -222,5 +222,8 @@ contract LPFactory is TokenizedFundsOracle, Constants {
         amount1 = (amount0UsdValue * (10 ** token1Decimals)) / (tokenPrice * 1e8);
     }
 
+    // TODO : function buy with boolean in params, which will let us know if the user just buys or buys and deposit on LP
+    // Same for sell.
+
     receive() external payable {}
 }
