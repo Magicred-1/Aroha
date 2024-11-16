@@ -4,7 +4,7 @@ pragma solidity ^0.8.22;
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/cryptography/MerkleProof.sol";
 
-contract Ahora is Ownable {
+contract AhoraKYC is Ownable {
     bytes32 public merkleRoot;
 
     mapping(address => bool) private whitelistedAddresses;
