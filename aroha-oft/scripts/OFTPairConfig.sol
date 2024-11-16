@@ -14,15 +14,6 @@ library OFTPairConfig {
     function getTokenPairs() internal pure returns (TokenConfig[] memory) {
         TokenConfig[] memory pairs = new TokenConfig[](1);
 
-        // // Pair 1: USDT (Unichain-Rootstock)
-        // pairs[0] = TokenConfig({
-        //     name: "USDT OFT",
-        //     symbol: "USDT",
-        //     decimals: 6,
-        //     unichainId: 1301, // Unichain Sepolia
-        //     remoteChainId: 31  // Rootstock Testnet
-        // });
-
         // // Pair 2: USDC (Unichain-Polygon Amoy)
         // pairs[1] = TokenConfig({
         //     name: "USDC OFT",
@@ -64,8 +55,8 @@ library OFTPairConfig {
             name: "MATIC OFT",
             symbol: "MATIC",
             decimals: 18,
-            unichainId: 1301,  // Unichain Sepolia
-            remoteChainId: 84532  // Base Sepolia
+            unichainId: 1301, // Unichain Sepolia
+            remoteChainId: 84532 // Base Sepolia
         });
 
         // // Pair 7: BNB (Unichain-Scroll)
@@ -79,4 +70,4 @@ library OFTPairConfig {
 
         return pairs;
     }
-} 
+}

@@ -3,10 +3,15 @@ pragma solidity ^0.8.22;
 
 import { IERC20 } from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import { IPoolManager } from "v4-core/src/interfaces/IPoolManager.sol";
+import { IHooks } from "v4-periphery/lib/v4-core/src/interfaces/IHooks.sol";
 import { PoolKey } from "v4-core/src/types/PoolKey.sol";
 import { CurrencyLibrary, Currency } from "v4-core/src/types/Currency.sol";
+import { Actions } from "v4-periphery/src/libraries/Actions.sol";
+import { LiquidityAmounts } from "v4-core/test/utils/LiquidityAmounts.sol";
+import { TickMath } from "v4-core/src/libraries/TickMath.sol";
 import { Constants } from "./Constants.sol";
 import { LPFactory } from "./LPFactory.sol";
+import { IERC20Metadata } from "@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol";
 
 contract ArohaTrade is LPFactory {
     event TokenBought(address indexed user, address indexed token, uint256 amount, bool createLP);
@@ -14,10 +19,8 @@ contract ArohaTrade is LPFactory {
     constructor(
         IPoolManager _poolManager,
         IHooks _hook,
-        address pythContract,
-        address lzEndpoint,
-        address delegate
-    ) LPFactory(_poolManager, _hook, pythContract) MyOFT("Aroha Token", "AROHA", lzEndpoint, delegate) {}
+        address pythContract
+    ) LPFactory(_poolManager, _hook, pythContract) {}
 
     function buy(address token, uint256 amountIn, bool createLP, bytes[] calldata priceUpdates) external payable {
         require(amountIn > 0, "Invalid purchase amount");

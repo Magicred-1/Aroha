@@ -13,13 +13,6 @@ contract ChainConfigs {
     mapping(uint256 => ChainConfig) public chainConfigs;
 
     constructor() {
-        // Rootstock Testnet
-        chainConfigs[31] = ChainConfig({
-            rpcUrl: "ROOTSTOCK_TESTNET_RPC_URL",
-            name: "Rootstock Testnet",
-            lzEndpoint: 0xbc2a00d907a6Aa5226Fb9444953E4464a5f4844a
-        });
-
         // Polygon Amoy Testnet
         chainConfigs[80002] = ChainConfig({
             rpcUrl: "POLYGON_AMOY_RPC_URL",
@@ -32,13 +25,6 @@ contract ChainConfigs {
             rpcUrl: "UNICHAIN_SEPOLIA_RPC_URL",
             name: "Unichain Sepolia",
             lzEndpoint: 0xb8815f3f882614048CbE201a67eF9c6F10fe5035
-        });
-
-        // Ethereum Sepolia
-        chainConfigs[11155111] = ChainConfig({
-            rpcUrl: "ETHEREUM_SEPOLIA_RPC_URL",
-            name: "Ethereum Sepolia",
-            lzEndpoint: 0x6EDCE65403992e310A62460808c4b910D972f10f
         });
 
         // Base Sepolia
