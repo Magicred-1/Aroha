@@ -26,7 +26,7 @@ export function SidebarComponent() {
     await switchChain(config, { chainId: id });
   };
 
-  const isWeb3AuthConnected = web3AuthInstance.status === "connected";
+  const isWeb3AuthConnected = web3AuthInstance && web3AuthInstance.status === "connected";
 
   const logout = async () => {
     if (isWeb3AuthConnected) {
@@ -68,7 +68,7 @@ export function SidebarComponent() {
       <Sidebar open={sidebarOpen} setOpen={setSidebarOpen} animate>
         <SidebarBody className="bg-gray-900 h-full">
           <Image src={ArohaLogo} height={300} width={150} alt="logo" />
-          <ChainSelector options={allChains} onSelect={switchToAnotherChain} currentChainId={config.state.chainId} />
+          {/* <ChainSelector options={allChains} onSelect={switchToAnotherChain} currentChainId={config.state.chainId} /> */}
           {links.map((link, index) => (
             <SidebarLink key={index} link={link} className="" />
           ))}
