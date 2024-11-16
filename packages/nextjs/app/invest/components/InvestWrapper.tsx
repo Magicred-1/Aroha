@@ -4,9 +4,10 @@ import { HoverEffect } from "@/components/ui/card-hover-effect";
 
 const InvestWrapper = () => {
   return (
-    <div className="max-w-5xl mx-auto px-8 my-12">
-      <HoverEffect items={chains} className="grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10" />
-    </div>
+      <div className="max-w-7xl mx-auto px-6">
+          <h1 className="text-[24px] text-wheat font-bold my-2">Marketplace</h1>
+  <HoverEffect items={chains} />
+</div>
   );
 };
 

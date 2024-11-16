@@ -7,7 +7,7 @@ const nextConfig = {
     ignoreBuildErrors: process.env.NEXT_PUBLIC_IGNORE_BUILD_ERROR === "true",
   },
   images: {
-    domains: ["assets.aceternity.com", "s2.coinmarketcap.com"],
+    domains: ["assets.aceternity.com", "s2.coinmarketcap.com", "assets.coingecko.com"],
   },
   eslint: {
     ignoreDuringBuilds: process.env.NEXT_PUBLIC_IGNORE_BUILD_ERROR === "true",
