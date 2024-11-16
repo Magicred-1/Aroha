@@ -1,4 +1,5 @@
 import { Footer } from "@/components/Footer";
+import { SidebarComponent } from "@/components/SidebarComponent";
 import { Providers } from "@/components/web3auth/provider/providers";
 import "@/styles/globals.css";
 

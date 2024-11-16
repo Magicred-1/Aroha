@@ -15,7 +15,7 @@ const page = () => {
   };
   const USDC = "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48";
   return (
-    <div className=" w-full h-full flex justify-center gap-10 p-6 my-auto">
+    <div className=" w-full pt-[10%] flex justify-center gap-10 p-6 my-auto">
       <TokenList />
       <div className="Uniswap">
         <SwapWidget
